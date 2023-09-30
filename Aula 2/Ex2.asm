@@ -1,9 +1,14 @@
 	.data
-	.eqv	Imm,1
+	.eqv	gray,7
 	.text
 	.globl main
-main:	li $t0,0x12345678	# $t0 = 0x12345678
-	sll $t2,$t0,Imm		# $t2 = $t0 << 1
-	srl $t3,$t0,Imm		# $t3 = $t0 >> 1
-	sra $t4,$t0,Imm		# $t4 = $t0 \ (2^1)
+main:	ori $t0,$0,gray		# $t0 = gray
+	move $t1,$t0		# $t1 = $t0
+	srl $a1,$t1,4		# $a1 = $t1 >> 4
+	xor $t1,$t1,$a1 	# $t1 = $t1 ^ $a1
+	srl $a2,$t1,2		# $a2 = $t1 >> 2
+	xor $t1,$t1,$a2		# $t1 = $t1 ^ $a2
+	srl $a3,$t1,1		# $a3 = $t1 >> 1
+	xor $t1,$t1,$a3 	# $t1 = $t1 ^ $a3
+	move $t2,$t1 		# $t2 = $t1
 	jr  $ra			
