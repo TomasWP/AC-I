@@ -21,7 +21,7 @@ main:
 while:					# while(p <= pultimo){
 	bgtu	$t0, $t1, endw
 	lw	$t2, 0($t0)		#	$t2 = *p;
-	add	$t3, $t3, $t2		#	soma = somas + *p;
+	add	$t3, $t3, $t2		#	soma = soma + *p;
 	addiu	$t0, $t0, 4		#	p++;	
 	j	while			#
 endw:					# }
