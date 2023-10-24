@@ -21,7 +21,7 @@ main:
 	li	$t0, 0			# i = 0;
 	la	$t2, array		# $t2 = array;
 while:
-	bgeu	$t0, SIZE, endwhile	# while (i < SIZE){
+	bge	$t0, SIZE, endwhile	# while (i < SIZE){
 	la	$a0, str4
 	li	$v0, print_str
 	syscall				# 	print_str("\nString #");
@@ -39,7 +39,7 @@ while2:
 	addu	$t3, $t3, $t1
 	lb	$t3, 0($t3)
 	li	$t4, '\0'
-	bne	$t3, $t4, endwhile2	# 		while(array[i][j] != '\0'){
+	beq	$t3, $t4, endwhile2	# 		while(array[i][j] != '\0'){
 	li	$v0, print_char
 	move	$a0, $t3
 	syscall				# 			print_char(array[i][j]);
@@ -47,6 +47,7 @@ while2:
 	li	$a0, '-'
 	syscall				#			print_char('-');
 	addi	$t1, $t1, 1		#			j++;
+	j	while2
 endwhile2:				#		}
 	addi	$t0, $t0, 1		# 	i++;
 	j	while

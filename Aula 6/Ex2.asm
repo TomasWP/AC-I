@@ -19,7 +19,7 @@ main:
 	mul	$t3, $t3, 4		# SIZE = SIZE * 4;
 	add	$t0, $t1, $t3		# pultimo = array + SIZE;
 while:
-	bge	$t1, $t0, endwhile	# while ( p < pultimo) {
+	bgeu	$t1, $t0, endwhile	# while ( p < pultimo) {
 	lw	$t2, 0($t1)		# 	*p = p[0];
 	li	$v0, print_str
 	move	$a0, $t2
