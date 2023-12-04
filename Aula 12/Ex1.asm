@@ -1,3 +1,6 @@
+# Mapa de Registos:
+# pmax:		$t0
+
 		.data
 		.eqv	id_number, 0
 		.eqv	first_name, 4
