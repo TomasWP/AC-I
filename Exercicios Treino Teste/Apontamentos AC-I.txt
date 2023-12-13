@@ -1,0 +1,27 @@
+Acesso Indexado:
+
+la	$t0, array			ou	
+lw/lb/l.d/s	$fx, 0($t0)		lw/lb/l.d/s	$fx, 0($ax)
+li	$t1, 1
+mul	$t2, $t1, nºint
+addu	$t3, $t0, $t2
+addi	$t1, $t1, 1
+
+
+
+Acesso por Ponteiros:
+
+la	$t0, str1			ou
+lw/lb/l.d/s	$fx, 0($t0)		lw/lb/l.d/s	$fx, 0($ax)
+mul	$t0, $t0, nºint
+addiu	$t0, $t0, 1
+
+
+Passar argumentos a uma função:
+
+$a0, $f12
+
+
+Retorno de argumentos de uma função:
+
+$v0, $f0
