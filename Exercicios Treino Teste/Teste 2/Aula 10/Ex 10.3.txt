@@ -1,0 +1,65 @@
+	.data
+	.eqv	SIZE, 10
+	.eqv	read_double, 7
+	.eqv	print_double, 3
+array:	.space 80
+	.text
+	.globl main
+
+main:
+	addiu	$sp, $sp, -12
+	sw	$ra, 0($sp)
+	sw	$s0, 4($sp)
+	sw	$s1, 8($sp)
+	li	$s0, 0			# i = 0;
+	la	$s1, array		# $s1 = array;
+while:
+	bge	$s0, SIZE, endwhile	#	while(i < SIZE){
+	l.d	$f2, 0($s1)
+	mul	$t2, $s0, 8
+	addu	$t3, $s1, $t2
+	li	$v0, read_double
+	syscall	
+	mtc1	$v0, $f2
+	addi	$s0, $s0, 1
+endwhile:
+	la	$a0, array
+	la	$a1, SIZE
+	jal	average
+	move	$a0, $v0
+	li	$v0, print_double
+	syscall
+	la	$a0, array
+	jal	var
+	move	$a0, $v0
+	li	$v0, print_double
+	syscall
+	la	$a0, array
+	jal	stdev
+	move	$a0, $v0
+	li	$v0, print_double
+	syscall
+	li	$v0, 0
+	lw	$s1, 8($sp)
+	lw	$s0, 4($sp)
+	lw	$ra, 0($sp)
+	addiu	$sp, $sp, 12
+	jr	$ra
+#================================================================================
+var:
+	addiu	$sp, $sp,
+	sw	$ra, 0($sp)
+	sw	$s0, 4($sp)
+	sw	$s1, 14($sp)
+	sw	$s2, 18($sp)
+	sw	$f20, 22($sp)		# $f20 = media;
+	sw	$f22, 26($sp)		# $f22 = soma;
+	li	$s0, 0			# $s0 = i = 0;
+	move	$s1, $a0		# $s1 = array;
+	move	$s2, $a1		# $s2 = nval;
+	
+	move	$a0, $s1
+	move	$a1, $s2
+	jal	average			# $v0 = (float)average(array, nval);
+	mtc1	$v0, $f20		# media = $v0;
+	
