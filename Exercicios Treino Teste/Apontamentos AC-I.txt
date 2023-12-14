@@ -7,6 +7,11 @@ mul	$t2, $t1, nºint
 addu	$t3, $t0, $t2
 addi	$t1, $t1, 1
 
+# $t0 - i
+# $t1 - &arr
+# $t2 - &(arr[n])
+addu	$t2, $t1, $t0
+
 
 
 Acesso por Ponteiros:
