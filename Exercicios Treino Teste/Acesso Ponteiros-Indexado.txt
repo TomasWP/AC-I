@@ -1,0 +1,12 @@
+la	$t0, array
+l.s	$t1, 0($t0)
+addiu	$t0, $t0, 4
+
+li	$t0, 0		# $t0 - i
+la	$t1, array	# $t1 - &arr
+mul	$t2, $t0, 4	# $t2 - i*4
+addu	$t3, $t1, $t2	# $t3 - &(arr[n])
+l.s	$t4, 0($t3)	# $t4 = arr[i]
+
+
+
